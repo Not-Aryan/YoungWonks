@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy</title>
+    <style>
+    .mystyle{
+        margin: 2em;
+        border: 1px solid black;
+        padding: 2em;
+        width: 22.5%;
+    }
+    </style>
+
+</head>
+
+<body>
+
+{% extends 'bootstrap/base.html' %}
+{% block title %}
+
+Buy Product.
+
+{% endblock %}
+
+{% block content%}
+
+
+<h1 class="jumbotron text-center" class="text-center">Buy Products</h1>
+
+<!--<button class="btn-warning" type="button"><a href="/">Go Back></a></button>-->
+
+
+<!--<form method="GET" action="/" class="text-center" class="form-inline">-->
+<!--    <input class="btn-warning" type="submit" value="Go Back">-->
+<!--</form>-->
+<form method="POST" action="">
+<div class="container">
+    {% for product in products %}
+<div class="btn">
+    <p> <code> <img src="{{ product.image}}" width = "200" height="200"> </code> </p>
+    <p> <code> {{ product['title'] }} </code> </p>
+    <p> <code> Description {{ product['description'] }} </code> </p>
+    <p> <code> Price: ${{ product['price'] }} </code> </p>
+    <p> <code> <select name="{{ product['_id']}}">
+        <option value="0">None</option>
+        {% for n in range(1, product['quantity']|int+1) %}
+            <option value="{{n}}">{{n}}</option>
+        {% endfor %}
+    </select>
+    </code> </p>
+
+</div>
+    {% endfor %}
+</div>
+    <button type = "submit">Add to Cart</button>
+
+</form>
+
+{% endblock %}
+
+</body>
+</html>
